@@ -1,3 +1,10 @@
+Fast fork of HTTPie to support OAuth 1.0 2 legged
+=================================================
+
+Here is a fast fork to support OAuth 1.0a 2 legged, I don't think it useful for so much people so it will not be integrated to httpie, but makes my days ! Just call it as usual, you also need to install requests-oauth::
+
+    http --auth-type oauth1_2leg -a ConsumerKey:ConsumerSecret POST http://localhost:5000/protected?w=1
+
 HTTPie: cURL for humans
 =======================
 
@@ -106,7 +113,7 @@ Most of the flags mirror the arguments understood by ``requests.request``. See `
     usage: http [-h] [--version] [--json | --form] [--traceback]
                        [--pretty | --ugly]
                        [--print OUTPUT_OPTIONS | --verbose | --headers | --body]
-                       [--style STYLE] [--auth AUTH] [--auth-type {basic,digest}]
+                       [--style STYLE] [--auth AUTH] [--auth-type {basic,digest,oauth1_2leg}]
                        [--verify VERIFY] [--proxy PROXY] [--allow-redirects]
                        [--timeout TIMEOUT]
                        METHOD URL [ITEM [ITEM ...]]
@@ -163,7 +170,7 @@ Most of the flags mirror the arguments understood by ``requests.request``. See `
                             or similar (e.g., via `export TERM=xterm-256color' in
                             your ~/.bashrc).
       --auth AUTH, -a AUTH  username:password
-      --auth-type {basic,digest}
+      --auth-type {basic,digest,oauth1_2leg}
                             The authentication mechanism to be used. Defaults to
                             "basic".
       --verify VERIFY       Set to "no" to skip checking the host's SSL

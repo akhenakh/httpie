@@ -193,6 +193,10 @@ class TestAuth(BaseTest):
         self.assertIn('"authenticated": true', r)
         self.assertIn('"user": "user"', r)
 
+    def test_digest_oauth1_2leg(self):
+        r = http('--auth-type=oauth1_2leg', '--auth', 'user:password',
+            'GET', 'http://httpbin.org/headers')
+        self.assertIn('Authorization: OAuth', r)
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,6 +5,7 @@ import json
 import requests
 
 from requests.compat import str
+from oauth_hook import OAuthHook
 
 from . import httpmessage
 from . import cliparse
@@ -43,11 +44,19 @@ def _get_response(parser, args, stdin, stdin_isatty):
     # Fire the request.
     try:
         credentials = None
+        hooks = {}
         if args.auth:
-            auth_type = (requests.auth.HTTPDigestAuth
-                         if args.auth_type == 'digest'
-                         else requests.auth.HTTPBasicAuth)
-            credentials = auth_type(args.auth.key, args.auth.value)
+            if args.auth_type == 'digest':
+                auth_type = requests.auth.HTTPDigestAuth
+                credentials = auth_type(args.auth.key, args.auth.value)
+            elif args.auth_type == 'basic':
+                auth_type = requests.auth.HTTPBasicAuth
+                credentials = auth_type(args.auth.key, args.auth.value)
+            elif args.auth_type == 'oauth1_2leg':
+                OAuthHook.consumer_key = args.auth.key
+                OAuthHook.consumer_secret = args.auth.value
+                oauth_hook = OAuthHook( header_auth=True)
+                hooks = {'pre_request':oauth_hook}
 
         return requests.request(
             method=args.method.lower(),
@@ -60,6 +69,7 @@ def _get_response(parser, args, stdin, stdin_isatty):
             proxies=dict((p.key, p.value) for p in args.proxy),
             files=args.files,
             allow_redirects=args.allow_redirects,
+            hooks=hooks
         )
 
     except (KeyboardInterrupt, SystemExit):
