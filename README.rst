@@ -5,6 +5,8 @@ Here is a fast fork to support OAuth 1.0a 2 legged, I don't think it useful for 
 
     http --auth-type oauth1_2leg -a ConsumerKey:ConsumerSecret POST http://localhost:5000/protected?w=1
 
+At this this time there is a bug in requests-oauth see `ticket 32 <https://github.com/maraujop/requests-oauth/issues/32>`_ for this tool to work as is, patch requests-oauth or wait for a fix.
+
 HTTPie: cURL for humans
 =======================
 
