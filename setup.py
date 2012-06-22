@@ -10,7 +10,7 @@ if sys.argv[-1] == 'test':
 
 
 # Debian has only requests==0.10.1 and httpie.deb depends on that.
-requirements = ['requests>=0.10.1', 'requests-oauth>=0.4.0', 'Pygments>=1.5']
+requirements = ['requests>=0.10.1', 'requests-oauth>=0.4.1', 'Pygments>=1.5']
 if sys.version_info[:2] in ((2, 6), (3, 1)):
     # argparse has been added in Python 3.2 / 2.7
     requirements.append('argparse>=1.2.1')

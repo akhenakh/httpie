@@ -5,8 +5,6 @@ Here is a fast fork to support OAuth 1.0a 2 legged, I don't think it useful for 
 
     http --auth-type oauth1_2leg -a ConsumerKey:ConsumerSecret POST http://localhost:5000/protected?w=1
 
-At this this time there is a bug in requests-oauth see `ticket 32 <https://github.com/maraujop/requests-oauth/issues/32>`_ for this tool to work as is, patch requests-oauth or wait for a fix.
-
 HTTPie: cURL for humans
 =======================
 
@@ -22,18 +20,8 @@ Under the hood, HTTPie uses the excellent `Requests <http://python-requests.org>
 Installation
 ------------
 
-The latest **stable version** of HTTPie can always be installed (or updated to) via `pip <http://www.pip-installer.org/en/latest/index.html>`_::
+As this version will never be integrated upstream in httpie your need to install it directly from GitHub:
 
-    pip install -U httpie
-
-
-Or, you can install the **development version** directly from GitHub:
-
-.. image:: https://secure.travis-ci.org/jkbr/httpie.png
-    :target: http://travis-ci.org/jkbr/httpie
-    :alt: Build Status of the master branch
-
-::
 
     pip install -U https://github.com/jkbr/httpie/tarball/master
 
@@ -106,7 +94,6 @@ A whole request body can be passed in via ``stdin`` instead::
     echo '{"name": "John"}' | http PATCH example.com/person/1 X-API-Token:123
     # Or:
     http POST example.com/person/1 X-API-Token:123 < person.json
-
 
 Flags
 ^^^^^
