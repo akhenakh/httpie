@@ -23,7 +23,7 @@ Installation
 As this version will never be integrated upstream in httpie your need to install it directly from GitHub:
 
 
-    pip install -U https://github.com/jkbr/httpie/tarball/master
+    pip install -U https://github.com/akhenakh/httpie/tarball/master
 
 
 Usage
