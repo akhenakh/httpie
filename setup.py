@@ -1,26 +1,43 @@
 import os
 import sys
+import re
+import codecs
 from setuptools import setup
 import httpie
 
 
 if sys.argv[-1] == 'test':
-    os.system('python tests/tests.py')
-    sys.exit()
+    status = os.system('python tests/tests.py')
+    sys.exit(1 if status > 127 else status)
 
 
-# Debian has only requests==0.10.1 and httpie.deb depends on that.
-requirements = ['requests>=0.10.1', 'requests-oauth>=0.4.1', 'Pygments>=1.5']
+requirements = [
+    'requests>=1.0.4',
+    'Pygments>=1.5',
+    'requests-oauthlib>=0.3.2'
+]
 if sys.version_info[:2] in ((2, 6), (3, 1)):
     # argparse has been added in Python 3.2 / 2.7
     requirements.append('argparse>=1.2.1')
+if 'win32' in str(sys.platform).lower():
+    # Terminal colors for Windows
+    requirements.append('colorama>=0.2.4')
+
+
+def long_description():
+    """Pre-process the README so that PyPi can render it properly."""
+    with codecs.open('README.rst', encoding='utf8') as f:
+        rst = f.read()
+    code_block = '(:\n\n)?\.\. code-block::.*'
+    rst = re.sub(code_block, '::', rst)
+    return rst
 
 
 setup(
     name='httpie',
     version=httpie.__version__,
     description=httpie.__doc__.strip(),
-    long_description=open('README.rst').read(),
+    long_description=long_description(),
     url='http://httpie.org/',
     download_url='https://github.com/jkbr/httpie',
     author=httpie.__author__,
@@ -49,5 +66,6 @@ setup(
         'Topic :: System :: Networking',
         'Topic :: Terminals',
         'Topic :: Text Processing',
+        'Topic :: Utilities'
     ],
 )

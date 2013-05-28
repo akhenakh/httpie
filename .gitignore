@@ -3,3 +3,8 @@ httpie.egg-info
 build
 *.pyc
 .tox
+README.html
+.coverage
+htmlcov
+.idea
+.DS_Store
