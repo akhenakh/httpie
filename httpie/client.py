@@ -4,6 +4,7 @@ from pprint import pformat
 
 import requests
 import requests.auth
+from requests_oauthlib import OAuth1
 
 from . import sessions
 from . import __version__
@@ -72,6 +73,7 @@ def get_requests_kwargs(args):
         credentials = {
             'basic': requests.auth.HTTPBasicAuth,
             'digest': requests.auth.HTTPDigestAuth,
+            'oauth1_2leg': OAuth1,
         }[args.auth_type](args.auth.key, args.auth.value)
 
     kwargs = {

@@ -1,7 +1,10 @@
 ****************************************
 HTTPie + OAuth 1.0a fork: a CLI, cURL-like tool for humans
 ****************************************
+Simple install in place of httpie with:
 
+    pip install -U https://github.com/akhenakh/httpie/tarball/master
+	
 Here is a simple fork to support OAuth 1.0a 2 legged, I don't think it is useful for so much people and it probably won't be integrated to httpie, but makes my days ! Just call it as usual, you also need to install requests-oauth::
 
     http --auth-type oauth1_2leg -a ConsumerKey:ConsumerSecret POST http://localhost:5000/protected?w=1
