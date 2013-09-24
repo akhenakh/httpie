@@ -1,6 +1,9 @@
 ****************************************
 HTTPie + OAuth 1.0a fork: a CLI, cURL-like tool for humans
 ****************************************
+
+As of September 24th 2013 this code is obsolete, use https://github.com/jkbr/httpie-oauth.
+
 Simple install in place of httpie with:
 
     pip install -U https://github.com/akhenakh/httpie/tarball/master
